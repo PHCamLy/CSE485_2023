@@ -8,35 +8,39 @@
     <title>Document</title>
 </head>
 <body>
+
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">Stt</th>
+      <th scope="col">Tên</th>
+      <th scope="col">Ngày</th>
+      <th scope="col">Trạng Thái</th>
     </tr>
   </thead>
   <tbody>
+  <?php 
+        require_once('/xampp/htdocs/CSE485_2023/BTTH02/includes/connect.php');
+         $sql = 'SELECT SinhVien.Ten, SuThamDu.Ngay, SuThamDu.TrangThaiThamDu
+         FROM SinhVien
+         JOIN SuThamDu ON SuThamDu.ID_SinhVien = SinhVien.ID;
+         ';
+        //  $sql = 'select * from sinhvien';
+        $statement = $conn->query($sql);
+        $stt=1;
+        foreach($statement as $each){
+    ?>
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+    <th scope="row"><?= $stt++?></th>
+      <th scope="row"><?= $each['Ten']?></th>
+      <td scope="row"><?= $each['Ngay']?></td>
+      <td scope="row"><?= $each['TrangThaiThamDu']?></td>
+      <!-- <td>@twitter</td> -->
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
+    <?php }?>
   </tbody>
 </table>
+ 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
