@@ -1,31 +1,30 @@
+<?php
+
 class StudentDAO {
-    private $students = array();
-
-    public function addStudent($student) {
-        $this->students[] = $student;
+    private array $arrayStudent;
+    public function __construct(array $arrayStudent){
+        $this->arrayStudent = $arrayStudent;
     }
-
-    public function updateStudent($id, $name, $age) {
-        foreach ($this->students as $student) {
-            if ($student->getId() == $id) {
-                $student->setName($name);
-                $student->setAge($age);
-                break;
-            }
-        }
+    public function create(Student $student){
+        $this->arrayStudent[] = $student;
     }
-
-    public function deleteStudent($id) {
-        foreach ($this->students as $key => $student) {
-            if ($student->getId() == $id) {
-                unset($this->students[$key]);
-                break;
-            }
-        }
-        $this->students = array_values($this->students);
+    public function read(string $path){
+        $file_handle = fopen($path , 'r');
+        $file_content = fread($file_handle , filesize($path));
+        echo $file_content;
+        fclose($file_handle);
     }
-
-    public function getAllStudents() {
-        return $this->students;
+    public function update(int $index ,Student $value){
+        $this->arrayStudent[$index] = $value;
+    }
+    public function delete(int $index){
+        unset($this->arrayStudent[$index]);
+    }
+    public function getAll(){
+        
+        for($i = 0 ; $i < count($this->arrayStudent) - 1 ; $i++){
+            echo $this->arrayStudent[$i].'<br>';
+        } 
     }
 }
+?>

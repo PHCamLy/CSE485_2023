@@ -1,31 +1,31 @@
-class Student {
-    private $id;
-    private $name;
-    private $age;
+<?php
+class student{
+    private int $id;
+    private string $name;
+    private int $age;
 
-    public function __construct($id, $name, $age) {
+    public function __construct($id , $name , $age){
         $this->id = $id;
         $this->name = $name;
         $this->age = $age;
     }
-
-    public function getId() {
+    function getID(){
         return $this->id;
     }
-
-    public function getName() {
+    function getName(){
         return $this->name;
     }
-
-    public function setName($name) {
-        $this->name = $name;
-    }
-
-    public function getAge() {
+    function getAge(){
         return $this->age;
     }
-
-    public function setAge($age) {
+    function setID(int $id){
+        $this->id = $id;
+    }
+    function setName(string $name){
+        $this->name = $name;
+    }
+    function setAge(int $age){
         $this->age = $age;
     }
-}
+} 
+?>
