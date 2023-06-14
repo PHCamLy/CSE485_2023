@@ -16,7 +16,7 @@ while(!feof($file)) {
 }
 fclose($file);
 
-foreach($student->getAll() as $student) {
+foreach($students->getAll() as $student) {
   echo "ID: " . $student->getId() . "<br>";
   echo "Name: " . $student->getName() . "<br>";
   echo "Age: " . $student->getAge() . "<br>";
